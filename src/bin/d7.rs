@@ -1,20 +1,20 @@
 use std::collections::{HashMap, HashSet};
 use std::hash::Hash;
-use std::io::{BufRead, stdin};
+use std::io::{stdin, BufRead};
 
 use regex::Regex;
 
 fn inner_count<T>(start: &T, graph: &HashMap<T, Vec<(T, usize)>>) -> usize
-    where
-        T: Eq + Hash,
+where
+    T: Eq + Hash,
 {
     fn inner<'a, T>(
         curr: &'a T,
         graph: &'a HashMap<T, Vec<(T, usize)>>,
         mem: &mut HashMap<&'a T, usize>,
     ) -> usize
-        where
-            T: Eq + Hash,
+    where
+        T: Eq + Hash,
     {
         match mem.get(curr) {
             Some(x) => *x,

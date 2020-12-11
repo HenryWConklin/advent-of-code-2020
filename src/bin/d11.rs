@@ -1,4 +1,4 @@
-use std::io::{BufRead, stdin};
+use std::io::{stdin, BufRead};
 use std::mem::swap;
 
 #[derive(Copy, Clone, PartialEq)]
