@@ -1,4 +1,4 @@
-use std::io::{stdin, BufRead};
+use std::io::{BufRead, stdin};
 use std::mem::swap;
 
 #[derive(Copy, Clone, PartialEq)]
@@ -32,9 +32,8 @@ fn adj_count(g: &Grid, i: usize, j: usize) -> usize {
             if a == i && b == j {
                 continue;
             }
-            match g[a][b] {
-                Cell::Occupied => adj += 1,
-                _ => {}
+            if g[a][b] == Cell::Occupied {
+                adj += 1;
             }
         }
     }

@@ -1,32 +1,29 @@
 use std::collections::{HashMap, HashSet};
 use std::hash::Hash;
-use std::io::{stdin, BufRead};
+use std::io::{BufRead, stdin};
 
 use regex::Regex;
 
 fn inner_count<T>(start: &T, graph: &HashMap<T, Vec<(T, usize)>>) -> usize
-where
-    T: Eq + Hash,
+    where
+        T: Eq + Hash,
 {
     fn inner<'a, T>(
         curr: &'a T,
         graph: &'a HashMap<T, Vec<(T, usize)>>,
         mem: &mut HashMap<&'a T, usize>,
     ) -> usize
-    where
-        T: Eq + Hash,
+        where
+            T: Eq + Hash,
     {
         match mem.get(curr) {
             Some(x) => *x,
             None => {
                 let mut tot_inner = 0;
-                match graph.get(curr) {
-                    Some(v) => {
-                        for (adj, count) in v {
-                            tot_inner += count * (inner(adj, graph, mem) + 1);
-                        }
+                if let Some(v) = graph.get(curr) {
+                    for (adj, count) in v {
+                        tot_inner += count * (inner(adj, graph, mem) + 1);
                     }
-                    None => {}
                 }
                 mem.insert(curr, tot_inner);
                 tot_inner
@@ -73,15 +70,12 @@ fn main() {
     let mut visited = HashSet::new();
     let mut stack = vec![&init_str];
     while let Some(curr) = stack.pop() {
-        match rev_graph.get(curr) {
-            Some(v) => {
-                for adj in v {
-                    if visited.insert(adj) {
-                        stack.push(adj)
-                    }
+        if let Some(v) = rev_graph.get(curr) {
+            for adj in v {
+                if visited.insert(adj) {
+                    stack.push(adj)
                 }
             }
-            None => {}
         }
     }
     println!("{}", visited.len());

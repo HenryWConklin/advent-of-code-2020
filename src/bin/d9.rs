@@ -38,7 +38,7 @@ fn main() {
     let cumsum = nums
         .iter()
         .scan(0, |acc, &x| {
-            *acc = *acc + x;
+            *acc += x;
             Some(*acc)
         })
         .collect_vec();
@@ -51,14 +51,11 @@ fn main() {
         None => {
             let mut result = None;
             for (i, v) in cumsum.iter().enumerate() {
-                match cumsum_rev.get(&(v + invalid_num)) {
-                    Some(ind) => {
-                        if ind - i >= 2 {
-                            result = Some((i + 1, ind + 1));
-                            break;
-                        }
+                if let Some(ind) = cumsum_rev.get(&(v + invalid_num)) {
+                    if ind - i >= 2 {
+                        result = Some((i + 1, ind + 1));
+                        break;
                     }
-                    None => {}
                 }
             }
             result.unwrap()

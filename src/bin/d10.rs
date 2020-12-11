@@ -19,8 +19,8 @@ fn main() {
         .map(|l| l.unwrap().parse::<i64>().unwrap())
         .collect_vec();
 
-    let mut sorted_nums = nums.clone();
-    sorted_nums.sort();
+    let mut sorted_nums = nums;
+    sorted_nums.sort_unstable();
     sorted_nums.push(sorted_nums[sorted_nums.len() - 1] + 3);
 
     let mut diff_counts = HashMap::new();

@@ -35,8 +35,7 @@ fn main() {
     let (a, _) = inds
         .iter()
         .tuple_windows()
-        .filter(|(a, b)| *b - *a == 2)
-        .next()
+        .find(|(a, b)| *b - *a == 2)
         .unwrap();
     println!("{}", a + 1);
 }

@@ -71,7 +71,7 @@ fn main() {
         .filter(|h| {
             let val = h.get("hcl").unwrap();
             val.len() == 7
-                && val.chars().nth(0).unwrap() == '#'
+                && val.starts_with('#')
                 && val
                     .chars()
                     .skip(1)
