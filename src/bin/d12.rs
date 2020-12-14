@@ -1,4 +1,4 @@
-use std::io::{BufRead, stdin};
+use std::io::{stdin, BufRead};
 use std::ops::{AddAssign, Mul};
 
 #[derive(Copy, Clone, Debug)]
@@ -148,7 +148,11 @@ fn main() {
         },
         |s, l| s.command(&l[..1], l[1..].parse().unwrap()),
     );
-    println!("{:?} {}", final_pos, final_pos.p.x.abs() + final_pos.p.y.abs());
+    println!(
+        "{:?} {}",
+        final_pos,
+        final_pos.p.x.abs() + final_pos.p.y.abs()
+    );
 
     let final_pos2 = lines.iter().fold(
         ShipStateWaypoint {
@@ -157,5 +161,9 @@ fn main() {
         },
         |s, l| s.command(&l[..1], l[1..].parse().unwrap()),
     );
-    println!("{:?} {}", final_pos2, final_pos2.ship.x.abs() + final_pos2.ship.y.abs())
+    println!(
+        "{:?} {}",
+        final_pos2,
+        final_pos2.ship.x.abs() + final_pos2.ship.y.abs()
+    )
 }
