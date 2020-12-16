@@ -100,7 +100,7 @@ fn addrs(mask: &MemVal) -> Vec<MemVal> {
     res
 }
 
-fn read_instructions<T: Iterator<Item=String>>(lines: T) -> Vec<Instruction>{
+fn read_instructions<T: Iterator<Item = String>>(lines: T) -> Vec<Instruction> {
     let set_regex = Regex::new(r"^mem\[(\d+)\] = (\d+)$").unwrap();
     let instructions: Vec<_> = lines
         .map(|l| {
@@ -117,7 +117,7 @@ fn read_instructions<T: Iterator<Item=String>>(lines: T) -> Vec<Instruction>{
                         .as_str(),
                     2,
                 )
-                    .unwrap();
+                .unwrap();
                 let value = MemVal::from_str_radix(
                     mask_str
                         .chars()
@@ -129,7 +129,7 @@ fn read_instructions<T: Iterator<Item=String>>(lines: T) -> Vec<Instruction>{
                         .as_str(),
                     2,
                 )
-                    .unwrap();
+                .unwrap();
                 Instruction::Mask { mask, value }
             } else if l.starts_with("mem") {
                 let captures = set_regex.captures(&l).unwrap();
@@ -171,14 +171,14 @@ fn solve2(instructions: &[Instruction]) {
 }
 
 fn main() {
-    let instructions = read_instructions(stdin().lock().lines().map(|x|x.unwrap()));
+    let instructions = read_instructions(stdin().lock().lines().map(|x| x.unwrap()));
     solve1(&instructions);
     solve2(&instructions);
 }
 
 #[test]
 fn test_mask_addrs() {
-    assert_eq!(vec![0,1,2,3], addrs(&0b11));
-    assert_eq!(vec![0,1,2,3,4,5,6,7], addrs(&0b111));
+    assert_eq!(vec![0, 1, 2, 3], addrs(&0b11));
+    assert_eq!(vec![0, 1, 2, 3, 4, 5, 6, 7], addrs(&0b111));
     assert_eq!(vec![0b000, 0b001, 0b100, 0b101], addrs(&0b101));
 }
