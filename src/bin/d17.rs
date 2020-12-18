@@ -215,10 +215,10 @@ impl Grid4 {
         }
     }
 
-    fn set(&mut self, i: i32, j: i32, k: i32, w: i32, v: CellState) {
+    fn set(&mut self, i: i32, j: i32, k: i32, w: i32, value: CellState) {
         match self.get_ind(i, j, k, w) {
             None => panic!("Set on out of bounds index"),
-            Some(ind) => self.data[ind] = v,
+            Some(ind) => self.data[ind] = value,
         }
     }
 
@@ -281,9 +281,9 @@ impl Display for Grid {
                     };
                     write!(f, "{}", char)?;
                 }
-                write!(f, "\n")?;
+                writeln!(f,)?;
             }
-            write!(f, "\n")?;
+            writeln!(f,)?;
         }
         Ok(())
     }

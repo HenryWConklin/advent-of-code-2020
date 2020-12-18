@@ -87,8 +87,8 @@ fn main() {
             if column_fields[i].len() == 1 {
                 let field = column_fields[i][0];
                 final_fields[i] = Some(field);
-                for j in 0..column_fields.len() {
-                    column_fields[j].retain(|&v| v != field);
+                for field2 in &mut column_fields {
+                    field2.retain(|&v| v != field);
                 }
             }
         }
