@@ -45,7 +45,13 @@ fn main() {
         })
         .collect();
 
-    let yours: Vec<_> = yours.lines().nth(1).unwrap().split(',').map(|x|x.parse::<u32>().unwrap()).collect();
+    let yours: Vec<_> = yours
+        .lines()
+        .nth(1)
+        .unwrap()
+        .split(',')
+        .map(|x| x.parse::<u32>().unwrap())
+        .collect();
     let tickets: Vec<Vec<u32>> = tickets
         .lines()
         .skip(1)
@@ -71,7 +77,8 @@ fn main() {
     for c in 0..fields.len() {
         let valid_fields: Vec<_> = fields
             .iter()
-            .filter(|f| valid_tickets.iter().all(|&t| f.contains(&t[c]))).collect();
+            .filter(|f| valid_tickets.iter().all(|&t| f.contains(&t[c])))
+            .collect();
         column_fields.push(valid_fields);
     }
     let mut final_fields = vec![None; fields.len()];
@@ -81,7 +88,7 @@ fn main() {
                 let field = column_fields[i][0];
                 final_fields[i] = Some(field);
                 for j in 0..column_fields.len() {
-                    column_fields[j].retain(|&v| v!=field);
+                    column_fields[j].retain(|&v| v != field);
                 }
             }
         }
@@ -95,5 +102,4 @@ fn main() {
         }
     }
     println!("{}", prod);
-
 }
