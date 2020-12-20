@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 use std::hash::Hash;
-use std::io::{Read, stdin};
+use std::io::{stdin, Read};
 
 #[derive(Debug, Clone, Copy)]
 enum Symbol<N: Eq + Hash, T: Eq> {
