@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use std::io::{Read, stdin};
+use std::io::{stdin, Read};
 use std::mem::swap;
 
 const TOP: usize = 0;
@@ -9,7 +9,8 @@ const RIGHT: usize = 3;
 const SEA_MONSTER: [&str; 3] = [
     "                  # ",
     "#    ##    ##    ###",
-    " #  #  #  #  #  #   "];
+    " #  #  #  #  #  #   ",
+];
 
 struct Frame {
     id: u64,
@@ -21,7 +22,7 @@ struct Frame {
 }
 
 impl Frame {
-    fn border_to_int<T: Iterator<Item=char>>(border: T) -> u16 {
+    fn border_to_int<T: Iterator<Item = char>>(border: T) -> u16 {
         let mut acc = 0;
         for c in border {
             acc <<= 1;
@@ -356,10 +357,13 @@ fn main() {
             }
         }
     }
-    let roughness = full_grid.iter().flat_map(|r| r.iter()).filter(|&&x| x).count();
+    let roughness = full_grid
+        .iter()
+        .flat_map(|r| r.iter())
+        .filter(|&&x| x)
+        .count();
     println!("{}", roughness);
 }
-
 
 #[test]
 fn nest_arr_reverse() {
