@@ -1,6 +1,5 @@
 use itertools::Itertools;
 use std::collections::{HashMap, HashSet};
-use std::hash::Hash;
 use std::io::{stdin, BufRead};
 
 struct IngredientList {
