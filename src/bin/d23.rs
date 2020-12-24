@@ -82,8 +82,8 @@ fn part2() {
         }
         let curr_digit = nums.pop_front().unwrap();
 
-        for i in 0..WINDOW_SIZE {
-            window[i] = nums.pop_front().unwrap();
+        for x in window.iter_mut() {
+            *x = nums.pop_front().unwrap();
         }
 
         // Only 4 possible target numbers, curr_digit - 1, -2, -3, and -4. Take the largest one
@@ -98,8 +98,8 @@ fn part2() {
         };
 
         // Insert the window values
-        for i in 0..WINDOW_SIZE {
-            nums.insert(target_ind + i + 1, window[i]);
+        for (i, x) in window.iter().enumerate() {
+            nums.insert(target_ind + i + 1, *x);
         }
 
         nums.push_back(curr_digit);

@@ -17,10 +17,8 @@ fn recursive_combat(player1: &mut VecDeque<Card>, player2: &mut VecDeque<Card>) 
         let c2 = player2.pop_front().unwrap();
         if (c1 as usize) <= player1.len() && (c2 as usize) <= player2.len() {
             // Recurse
-            let mut player1_sub: VecDeque<_> =
-                player1.iter().take(c1 as usize).map(|&x| x).collect();
-            let mut player2_sub: VecDeque<_> =
-                player2.iter().take(c2 as usize).map(|&x| x).collect();
+            let mut player1_sub: VecDeque<_> = player1.iter().take(c1 as usize).copied().collect();
+            let mut player2_sub: VecDeque<_> = player2.iter().take(c2 as usize).copied().collect();
             let p1_sub_winner = recursive_combat(&mut player1_sub, &mut player2_sub);
             if p1_sub_winner {
                 player1.push_back(c1);

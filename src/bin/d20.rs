@@ -344,8 +344,8 @@ fn main() {
                 full_grid.reverse();
             }
             // Flip cols
-            for i in 0..full_grid.len() {
-                full_grid[i].reverse();
+            for row in &mut full_grid {
+                row.reverse();
             }
         }
         // Transpose
